@@ -35,3 +35,6 @@ build/
 # Local notes/files
 linux setup.txt
 web2-seminar-homework requirements.txt
+
+# Ignore local Spring Boot overrides (private DB settings)
+/src/main/resources/application-local.properties

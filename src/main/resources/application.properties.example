@@ -1,0 +1,16 @@
+### Example application properties (DO NOT COMMIT YOUR LOCAL OVERRIDES)
+# Copy this file to `application-local.properties` in the same folder for local development
+# and update the values for your local environment. `application-local.properties` is
+# ignored by git so your credentials and DB names stay private.
+
+spring.datasource.url=jdbc:mysql://127.0.0.1:3306/local_app203?useSSL=false&serverTimezone=UTC
+spring.datasource.username=root
+spring.datasource.password=
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+# Use a local profile during development to load `application-local.properties`:
+# mvnw.cmd spring-boot:run -Dspring-boot.run.profiles=local
