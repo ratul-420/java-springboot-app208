@@ -1,126 +1,114 @@
-/* Base theme */
+/* Theme: Pico.css (MIT) + light custom accents */
+@import url("https://unpkg.com/@picocss/pico@1.5.10/css/pico.min.css");
+
 :root {
-    --bg: #f5f7fb;
-    --card: #ffffff;
+    --page-bg: #f6f7fb;
     --accent: #2f6fed;
-    --text: #1f2a44;
-    --muted: #5c667a;
-    --border: #e2e6ee;
-    --danger: #e55353;
+    --text-strong: #1f2a44;
+    --card-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
 
-* { box-sizing: border-box; }
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
+    background: var(--page-bg);
+    color: var(--text-strong);
 }
 
-.container {
+main {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 20px;
-}
-
-.card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    padding: 1.5rem;
 }
 
 .site-header {
-    background: var(--card);
-    border-bottom: 1px solid var(--border);
-    padding: 12px 0;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    background: #fff;
+    box-shadow: var(--card-shadow);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
-.nav {
+.nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.nav-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 0.5rem;
     align-items: center;
+    margin: 0;
 }
 
-.nav a {
-    text-decoration: none;
-    color: var(--text);
-    padding: 6px 10px;
-    border-radius: 6px;
-    transition: background 0.2s;
+.nav-links a {
+    color: var(--text-strong);
+    font-weight: 600;
 }
 
-.nav a:hover {
-    background: var(--border);
+.brand {
+    font-weight: 800;
+    letter-spacing: 0.02em;
 }
 
-h1, h2, h3 {
-    margin-top: 0;
+.card {
+    box-shadow: var(--card-shadow);
+    border-radius: 14px;
 }
 
-.btn {
+.hero {
+    background: linear-gradient(135deg, #eaf0ff, #fdfdff);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: var(--card-shadow);
+}
+
+.grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+}
+
+.pill {
     display: inline-block;
-    background: var(--accent);
-    color: #fff;
-    padding: 10px 14px;
-    border: none;
-    border-radius: 8px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background 0.2s;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: #eef2ff;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.9rem;
 }
 
-.btn:hover { background: #265ed1; }
+.muted { color: #6c7891; font-size: 0.95rem; }
 
-.btn-danger { background: var(--danger); }
-.btn-danger:hover { background: #c63f3f; }
-
-form input, form textarea, form select {
-    width: 100%;
-    padding: 10px;
-    margin: 6px 0 12px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-}
-
-label { font-weight: 600; }
-
-.error { color: var(--danger); font-size: 0.9rem; }
-.success { color: green; }
+.btn-inline { margin-right: 0.5rem; }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 12px;
 }
 
 th, td {
-    border: 1px solid var(--border);
-    padding: 10px;
-    text-align: left;
+    padding: 0.75rem;
+    border-bottom: 1px solid #e6e8ef;
 }
 
 th {
-    background: #eef1f7;
+    background: #f3f6fb;
+    font-weight: 700;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 12px;
-}
-
-.hero {
-    background: linear-gradient(135deg, #eef3ff, #f9fbff);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
+.actions {
+    display: inline-flex;
+    gap: 0.35rem;
 }
 
 @media (max-width: 640px) {
-    .nav { flex-direction: column; align-items: flex-start; }
-    .container { padding: 14px; }
+    .nav-bar { flex-direction: column; align-items: flex-start; }
+    main { padding: 1rem; }
 }
