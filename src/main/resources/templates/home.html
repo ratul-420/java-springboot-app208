@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
+</head>
+<body>
+<div class="site-header">
+    <div class="container nav">
+        <strong>App208</strong>
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/contact}">Contact</a>
+        <a th:href="@{/messages}">Messages</a>
+        <a th:href="@{/database}">Database</a>
+        <a th:href="@{/chart}">Chart</a>
+        <a th:href="@{/admin/panel}" sec:authorize="hasRole('ADMIN')">Admin</a>
+        <a th:href="@{/logout}">Logout</a>
+    </div>
+    </div>
+
+<div class="container">
+    <div class="hero card">
+        <h1>Welcome to App208</h1>
+        <p>Internal portal demo with auth, messaging, data browsing, and analytics.</p>
+        <ul>
+            <li>Secure login/registration with roles</li>
+            <li>Contact + message storage and viewing</li>
+            <li>Database overview and CRUD</li>
+            <li>REST API and charting</li>
+        </ul>
+    </div>
+
+    <div class="grid" style="margin-top: 16px;">
+        <div class="card">
+            <h3>Get in Touch</h3>
+            <p>Use the contact form to send us a message. Data is stored and listed for registered users.</p>
+            <a class="btn" th:href="@{/contact}">Go to Contact</a>
+        </div>
+        <div class="card">
+            <h3>Messages</h3>
+            <p>Logged-in users can view submissions and manage entries through the CRUD interface.</p>
+            <a class="btn" th:href="@{/messages}">View Messages</a>
+        </div>
+        <div class="card">
+            <h3>Data & Charts</h3>
+            <p>Browse users/roles/messages and see a Chart.js view of messages per day.</p>
+            <a class="btn" th:href="@{/database}">Database</a>
+            <a class="btn" style="margin-left:8px;" th:href="@{/chart}">Chart</a>
+        </div>
+        <div class="card">
+            <h3>Admin</h3>
+            <p>Admin users can access the admin panel and manage protected areas.</p>
+            <a class="btn" th:href="@{/admin/panel}" sec:authorize="hasRole('ADMIN')">Admin Panel</a>
+            <p sec:authorize="!hasRole('ADMIN')" class="muted">Login as admin to access.</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

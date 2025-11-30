@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Messages Chart</title>
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="site-header">
+    <div class="container nav">
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/contact}">Contact</a>
+        <a th:href="@{/messages}">Messages</a>
+        <a th:href="@{/database}">Database</a>
+        <a th:href="@{/admin/panel}" sec:authorize="hasRole('ADMIN')">Admin</a>
+        <a th:href="@{/logout}">Logout</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="card">
+        <h1>Messages per Day</h1>
+        <canvas id="msgChart" width="400" height="200"></canvas>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    const labels = [[${labels}]];
+    const data = [[${data}]];
+
+    const ctx = document.getElementById('msgChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Messages',
+                data: data,
+                backgroundColor: 'rgba(47, 111, 237, 0.5)',
+                borderColor: 'rgb(47, 111, 237)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

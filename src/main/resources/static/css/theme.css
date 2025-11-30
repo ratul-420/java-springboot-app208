@@ -1,0 +1,126 @@
+/* Base theme */
+:root {
+    --bg: #f5f7fb;
+    --card: #ffffff;
+    --accent: #2f6fed;
+    --text: #1f2a44;
+    --muted: #5c667a;
+    --border: #e2e6ee;
+    --danger: #e55353;
+}
+
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.site-header {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+
+.nav a {
+    text-decoration: none;
+    color: var(--text);
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+.nav a:hover {
+    background: var(--border);
+}
+
+h1, h2, h3 {
+    margin-top: 0;
+}
+
+.btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn:hover { background: #265ed1; }
+
+.btn-danger { background: var(--danger); }
+.btn-danger:hover { background: #c63f3f; }
+
+form input, form textarea, form select {
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+label { font-weight: 600; }
+
+.error { color: var(--danger); font-size: 0.9rem; }
+.success { color: green; }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+th, td {
+    border: 1px solid var(--border);
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background: #eef1f7;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+}
+
+.hero {
+    background: linear-gradient(135deg, #eef3ff, #f9fbff);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+@media (max-width: 640px) {
+    .nav { flex-direction: column; align-items: flex-start; }
+    .container { padding: 14px; }
+}

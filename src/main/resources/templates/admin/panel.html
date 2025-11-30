@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Admin Panel</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        nav a { margin-right: 10px; }
+        ul { line-height: 1.6; }
+    </style>
+</head>
+<body>
+<h1>Admin Panel</h1>
+<p>Only admins should see this page.</p>
+
+<nav>
+    <a th:href="@{/home}">Home</a>
+    <a th:href="@{/messages/manage}">Manage Messages</a>
+    <a th:href="@{/database}">Database</a>
+    <a th:href="@{/logout}">Logout</a>
+    <a th:href="@{/chart}">Chart</a>
+</nav>
+
+<h3>Quick Admin Links</h3>
+<ul>
+    <li><a th:href="@{/messages/manage}">CRUD: Messages</a></li>
+    <li><a th:href="@{/database}">Database overview (users/roles/messages)</a></li>
+    <li><a th:href="@{/chart}">Messages chart</a></li>
+</ul>
+
+</body>
+</html>

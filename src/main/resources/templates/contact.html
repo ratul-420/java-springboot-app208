@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Contact</title>
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
+</head>
+<body>
+<div class="site-header">
+    <div class="container nav">
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/login}">Login</a>
+        <a th:href="@{/register}">Register</a>
+        <a th:href="@{/messages}">Messages</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="card">
+        <h1>Contact</h1>
+
+        <div th:if="${success}" class="success">
+            <p>Message sent successfully.</p>
+            <p><a th:href="@{/messages}">View messages (requires login)</a></p>
+        </div>
+
+        <form th:action="@{/contact}" th:object="${messageDto}" method="post">
+            <label>Name:</label>
+            <input type="text" th:field="*{name}" />
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></div>
+
+            <label>Email:</label>
+            <input type="email" th:field="*{email}" />
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></div>
+
+            <label>Subject:</label>
+            <input type="text" th:field="*{subject}" />
+            <div th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}" class="error"></div>
+
+            <label>Message:</label>
+            <textarea th:field="*{content}" rows="5"></textarea>
+            <div th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="error"></div>
+
+            <button class="btn" type="submit">Send</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

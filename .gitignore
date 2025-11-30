@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Local notes/files
+linux setup.txt
+web2-seminar-homework requirements.txt

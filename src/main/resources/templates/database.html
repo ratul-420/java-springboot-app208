@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Database</title>
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
+</head>
+<body>
+<div class="site-header">
+    <div class="container nav">
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/contact}">Contact</a>
+        <a th:href="@{/messages}">Messages</a>
+        <a th:href="@{/chart}">Chart</a>
+        <a th:href="@{/admin/panel}" sec:authorize="hasRole('ADMIN')">Admin</a>
+        <a th:href="@{/logout}">Logout</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="card">
+        <h1>Database Overview</h1>
+
+        <h2>Users</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="u : ${users}">
+                <td th:text="${u.id}"></td>
+                <td th:text="${u.username}"></td>
+                <td th:text="${u.email}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h2>Roles</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="r : ${roles}">
+                <td th:text="${r.id}"></td>
+                <td th:text="${r.name}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h2>Messages</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>When</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Message</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="m : ${messages}">
+                <td th:text="${m.id}"></td>
+                <td th:text="${#temporals.format(m.createdAt, 'yyyy-MM-dd HH:mm')}"></td>
+                <td th:text="${m.name}"></td>
+                <td th:text="${m.email}"></td>
+                <td th:text="${m.subject}"></td>
+                <td th:text="${m.content}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

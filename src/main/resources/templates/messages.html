@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Messages</title>
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
+</head>
+<body>
+<div class="site-header">
+    <div class="container nav">
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/contact}">Contact</a>
+        <a th:href="@{/messages/manage}">Manage</a>
+        <a th:href="@{/admin/panel}" sec:authorize="hasRole('ADMIN')">Admin</a>
+        <a th:href="@{/logout}">Logout</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="card">
+        <h1>Messages</h1>
+
+        <table>
+            <thead>
+            <tr>
+                <th>When</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Message</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="msg : ${messages}">
+                <td th:text="${#temporals.format(msg.createdAt, 'yyyy-MM-dd HH:mm')}"></td>
+                <td th:text="${msg.name}"></td>
+                <td th:text="${msg.email}"></td>
+                <td th:text="${msg.subject}"></td>
+                <td th:text="${msg.content}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

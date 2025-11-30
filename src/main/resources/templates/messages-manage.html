@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Manage Messages</title>
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
+</head>
+<body>
+<div class="site-header">
+    <div class="container nav">
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/messages}">Messages</a>
+        <a th:href="@{/contact}">Contact</a>
+        <a th:href="@{/chart}">Chart</a>
+        <a th:href="@{/logout}">Logout</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="card">
+        <h1>Manage Messages (CRUD)</h1>
+        <p><a class="btn" th:href="@{/messages/manage/new}">Create new</a></p>
+
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Message</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="m : ${messages}">
+                <td th:text="${m.id}"></td>
+                <td th:text="${m.name}"></td>
+                <td th:text="${m.email}"></td>
+                <td th:text="${m.subject}"></td>
+                <td th:text="${m.content}"></td>
+                <td>
+                    <a class="btn" th:href="@{|/messages/manage/edit/${m.id}|}">Edit</a>
+                    <form th:action="@{|/messages/manage/delete/${m.id}|}" method="post" style="display:inline;">
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
