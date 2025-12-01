@@ -5,56 +5,83 @@
     <link rel="stylesheet" th:href="@{/css/theme.css}">
 </head>
 <body>
-<div class="site-header">
-    <div class="container nav">
-        <strong>App208</strong>
-        <a th:href="@{/home}">Home</a>
-        <a th:href="@{/contact}">Contact</a>
-        <a th:href="@{/messages}">Messages</a>
-        <a th:href="@{/database}">Database</a>
-        <a th:href="@{/chart}">Chart</a>
-        <a th:href="@{/admin/panel}" sec:authorize="hasRole('ADMIN')">Admin</a>
-        <a th:href="@{/logout}">Logout</a>
-    </div>
-    </div>
+<header class="site-header">
+    <nav class="nav-bar">
+        <div class="brand">App208</div>
+        <div class="nav-links">
+            <a th:href="@{/home}">Home</a>
+            <a th:href="@{/contact}">Contact</a>
+            <a th:href="@{/chart}">Chart</a>
+            <a th:href="@{/database}" sec:authorize="isAuthenticated()">Database</a>
+            <a th:href="@{/messages}" sec:authorize="isAuthenticated()">Messages</a>
+            <a th:href="@{/messages/manage}" sec:authorize="isAuthenticated()">CRUD</a>
+            <a th:href="@{/admin/panel}" sec:authorize="hasRole('ADMIN')">Admin</a>
+            <a th:href="@{/login}" sec:authorize="!isAuthenticated()">Login</a>
+            <a th:href="@{/register}" sec:authorize="!isAuthenticated()">Register</a>
+            <a th:href="@{/logout}" sec:authorize="isAuthenticated()">Logout</a>
+        </div>
+    </nav>
+</header>
 
-<div class="container">
-    <div class="hero card">
-        <h1>Welcome to App208</h1>
-        <p>Internal portal demo with auth, messaging, data browsing, and analytics.</p>
-        <ul>
-            <li>Secure login/registration with roles</li>
-            <li>Contact + message storage and viewing</li>
-            <li>Database overview and CRUD</li>
-            <li>REST API and charting</li>
-        </ul>
-    </div>
+<main>
+    <section class="hero">
+        <div>
+            <span class="pill">Secure portal</span>
+            <h1>Welcome to App208</h1>
+            <p class="muted">
+                Lightweight Spring Boot portal with authentication, messaging, data browsing, charts, REST API, and admin-only tools.
+            </p>
+            <ul>
+                <li>Registration/login with visitor, user, and admin roles</li>
+                <li>Contact form with validation and message storage</li>
+                <li>Database overview, CRUD, and REST endpoints</li>
+                <li>Chart.js visualization of message activity</li>
+            </ul>
+            <div>
+                <a class="btn-inline" role="button" th:href="@{/contact}">Send a message</a>
+                <a class="btn-inline" role="button" th:href="@{/messages}" sec:authorize="isAuthenticated()">View messages</a>
+                <a class="btn-inline" role="button" th:href="@{/login}" sec:authorize="!isAuthenticated()">Login</a>
+            </div>
+        </div>
+    </section>
 
-    <div class="grid" style="margin-top: 16px;">
-        <div class="card">
+    <section class="grid-cards" style="margin-top: 1.25rem;">
+        <article class="card">
             <h3>Get in Touch</h3>
-            <p>Use the contact form to send us a message. Data is stored and listed for registered users.</p>
-            <a class="btn" th:href="@{/contact}">Go to Contact</a>
-        </div>
-        <div class="card">
-            <h3>Messages</h3>
-            <p>Logged-in users can view submissions and manage entries through the CRUD interface.</p>
-            <a class="btn" th:href="@{/messages}">View Messages</a>
-        </div>
-        <div class="card">
-            <h3>Data & Charts</h3>
-            <p>Browse users/roles/messages and see a Chart.js view of messages per day.</p>
-            <a class="btn" th:href="@{/database}">Database</a>
-            <a class="btn" style="margin-left:8px;" th:href="@{/chart}">Chart</a>
-        </div>
-        <div class="card">
-            <h3>Admin</h3>
-            <p>Admin users can access the admin panel and manage protected areas.</p>
-            <a class="btn" th:href="@{/admin/panel}" sec:authorize="hasRole('ADMIN')">Admin Panel</a>
-            <p sec:authorize="!hasRole('ADMIN')" class="muted">Login as admin to access.</p>
-        </div>
-    </div>
-</div>
+            <p class="muted">Use the contact form to send a message; submissions are stored and visible to signed-in users.</p>
+            <a role="button" th:href="@{/contact}">Contact</a>
+        </article>
 
+        <article class="card" sec:authorize="isAuthenticated()">
+            <h3>Messages & CRUD</h3>
+            <p class="muted">Review submissions and manage entries with create, edit, and delete.</p>
+            <div class="actions">
+                <a role="button" th:href="@{/messages}">Messages</a>
+                <a role="button" th:href="@{/messages/manage}">CRUD</a>
+            </div>
+        </article>
+
+        <article class="card">
+            <h3>Data & Chart</h3>
+            <p class="muted">Browse users/roles/messages and view daily activity with Chart.js.</p>
+            <div class="actions">
+                <a role="button" th:href="@{/database}" sec:authorize="isAuthenticated()">Database</a>
+                <a role="button" th:href="@{/chart}">Chart</a>
+            </div>
+        </article>
+
+        <article class="card" sec:authorize="hasRole('ADMIN')">
+            <h3>Admin</h3>
+            <p class="muted">Admin panel for elevated controls.</p>
+            <a role="button" th:href="@{/admin/panel}">Admin panel</a>
+        </article>
+
+        <article class="card" sec:authorize="!isAuthenticated()">
+            <h3>New here?</h3>
+            <p class="muted">Create an account to access protected features and manage messages.</p>
+            <a role="button" th:href="@{/register}">Register</a>
+        </article>
+    </section>
+</main>
 </body>
 </html>
