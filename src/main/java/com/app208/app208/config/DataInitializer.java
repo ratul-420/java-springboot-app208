@@ -28,7 +28,7 @@ public class DataInitializer {
             }
 
             // Create a default admin if it doesn't exist
-            if (userRepository.findByUsername("admin").isEmpty()) {
+            if (userRepository.findByEmail("admin@example.com") == null) {
                 User admin = new User();
                 admin.setUsername("admin");
                 admin.setEmail("admin@example.com");
