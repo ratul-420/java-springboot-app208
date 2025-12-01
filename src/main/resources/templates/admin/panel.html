@@ -1,31 +1,45 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Admin Panel</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        nav a { margin-right: 10px; }
-        ul { line-height: 1.6; }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
 </head>
 <body>
-<h1>Admin Panel</h1>
-<p>Only admins should see this page.</p>
+<header class="site-header">
+    <nav class="nav-bar">
+        <div class="brand">App208</div>
+        <div class="nav-links">
+            <a th:href="@{/home}">Home</a>
+            <a th:href="@{/messages/manage}">Manage Messages</a>
+            <a th:href="@{/database}">Database</a>
+            <a th:href="@{/chart}">Chart</a>
+            <a th:href="@{/logout}">Logout</a>
+        </div>
+    </nav>
+</header>
 
-<nav>
-    <a th:href="@{/home}">Home</a>
-    <a th:href="@{/messages/manage}">Manage Messages</a>
-    <a th:href="@{/database}">Database</a>
-    <a th:href="@{/logout}">Logout</a>
-    <a th:href="@{/chart}">Chart</a>
-</nav>
-
-<h3>Quick Admin Links</h3>
-<ul>
-    <li><a th:href="@{/messages/manage}">CRUD: Messages</a></li>
-    <li><a th:href="@{/database}">Database overview (users/roles/messages)</a></li>
-    <li><a th:href="@{/chart}">Messages chart</a></li>
-</ul>
-
+<main>
+    <section class="card">
+        <h1>Admin Panel</h1>
+        <p class="muted">Admin-only quick links to manage data and view analytics.</p>
+        <div class="grid-cards">
+            <article class="card">
+                <h3>Messages CRUD</h3>
+                <p class="muted">Create, edit, or delete stored messages.</p>
+                <a role="button" th:href="@{/messages/manage}">Open CRUD</a>
+            </article>
+            <article class="card">
+                <h3>Database Overview</h3>
+                <p class="muted">Inspect users, roles, and messages.</p>
+                <a role="button" th:href="@{/database}">Open database view</a>
+            </article>
+            <article class="card">
+                <h3>Chart</h3>
+                <p class="muted">See message volume by date with Chart.js.</p>
+                <a role="button" th:href="@{/chart}">Open chart</a>
+            </article>
+        </div>
+    </section>
+</main>
 </body>
 </html>

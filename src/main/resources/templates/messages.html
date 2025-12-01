@@ -1,24 +1,27 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Messages</title>
     <link rel="stylesheet" th:href="@{/css/theme.css}">
 </head>
 <body>
-<div class="site-header">
-    <div class="container nav">
-        <a th:href="@{/home}">Home</a>
-        <a th:href="@{/contact}">Contact</a>
-        <a th:href="@{/messages/manage}">Manage</a>
-        <a th:href="@{/admin/panel}" sec:authorize="hasRole('ADMIN')">Admin</a>
-        <a th:href="@{/logout}">Logout</a>
-    </div>
-</div>
+<header class="site-header">
+    <nav class="nav-bar">
+        <div class="brand">App208</div>
+        <div class="nav-links">
+            <a th:href="@{/home}">Home</a>
+            <a th:href="@{/contact}">Contact</a>
+            <a th:href="@{/messages/manage}">CRUD</a>
+            <a th:href="@{/admin/panel}" sec:authorize="hasRole('ADMIN')">Admin</a>
+            <a th:href="@{/logout}">Logout</a>
+        </div>
+    </nav>
+</header>
 
-<div class="container">
-    <div class="card">
+<main>
+    <section class="card">
         <h1>Messages</h1>
-
+        <p class="muted">Latest submissions ordered by time (newest first).</p>
         <table>
             <thead>
             <tr>
@@ -39,8 +42,7 @@
             </tr>
             </tbody>
         </table>
-    </div>
-</div>
-
+    </section>
+</main>
 </body>
 </html>

@@ -1,28 +1,31 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Messages Chart</title>
     <link rel="stylesheet" th:href="@{/css/theme.css}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-<div class="site-header">
-    <div class="container nav">
-        <a th:href="@{/home}">Home</a>
-        <a th:href="@{/contact}">Contact</a>
-        <a th:href="@{/messages}">Messages</a>
-        <a th:href="@{/database}">Database</a>
-        <a th:href="@{/admin/panel}" sec:authorize="hasRole('ADMIN')">Admin</a>
-        <a th:href="@{/logout}">Logout</a>
-    </div>
-</div>
+<header class="site-header">
+    <nav class="nav-bar">
+        <div class="brand">App208</div>
+        <div class="nav-links">
+            <a th:href="@{/home}">Home</a>
+            <a th:href="@{/messages}">Messages</a>
+            <a th:href="@{/database}">Database</a>
+            <a th:href="@{/admin/panel}" sec:authorize="hasRole('ADMIN')">Admin</a>
+            <a th:href="@{/logout}">Logout</a>
+        </div>
+    </nav>
+</header>
 
-<div class="container">
-    <div class="card">
+<main>
+    <section class="card">
         <h1>Messages per Day</h1>
+        <p class="muted">Chart.js visualization of message volume by date.</p>
         <canvas id="msgChart" width="400" height="200"></canvas>
-    </div>
-</div>
+    </section>
+</main>
 
 <script th:inline="javascript">
     const labels = [[${labels}]];
@@ -48,6 +51,5 @@
         }
     });
 </script>
-
 </body>
 </html>

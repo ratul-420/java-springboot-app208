@@ -1,24 +1,31 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Manage Messages</title>
     <link rel="stylesheet" th:href="@{/css/theme.css}">
 </head>
 <body>
-<div class="site-header">
-    <div class="container nav">
-        <a th:href="@{/home}">Home</a>
-        <a th:href="@{/messages}">Messages</a>
-        <a th:href="@{/contact}">Contact</a>
-        <a th:href="@{/chart}">Chart</a>
-        <a th:href="@{/logout}">Logout</a>
-    </div>
-</div>
+<header class="site-header">
+    <nav class="nav-bar">
+        <div class="brand">App208</div>
+        <div class="nav-links">
+            <a th:href="@{/home}">Home</a>
+            <a th:href="@{/messages}">Messages</a>
+            <a th:href="@{/chart}">Chart</a>
+            <a th:href="@{/logout}">Logout</a>
+        </div>
+    </nav>
+</header>
 
-<div class="container">
-    <div class="card">
-        <h1>Manage Messages (CRUD)</h1>
-        <p><a class="btn" th:href="@{/messages/manage/new}">Create new</a></p>
+<main>
+    <section class="card">
+        <div style="display:flex; justify-content: space-between; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+            <div>
+                <h1>Manage Messages (CRUD)</h1>
+                <p class="muted">Create, edit, or delete stored messages.</p>
+            </div>
+            <a role="button" th:href="@{/messages/manage/new}">Create new</a>
+        </div>
 
         <table>
             <thead>
@@ -38,17 +45,16 @@
                 <td th:text="${m.email}"></td>
                 <td th:text="${m.subject}"></td>
                 <td th:text="${m.content}"></td>
-                <td>
-                    <a class="btn" th:href="@{|/messages/manage/edit/${m.id}|}">Edit</a>
+                <td class="actions">
+                    <a role="button" th:href="@{|/messages/manage/edit/${m.id}|}">Edit</a>
                     <form th:action="@{|/messages/manage/delete/${m.id}|}" method="post" style="display:inline;">
-                        <button class="btn btn-danger" type="submit">Delete</button>
+                        <button class="secondary" type="submit" onclick="return confirm('Delete this message?');">Delete</button>
                     </form>
                 </td>
             </tr>
             </tbody>
         </table>
-    </div>
-</div>
-
+    </section>
+</main>
 </body>
 </html>

@@ -1,42 +1,48 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title th:text="${messageId} != null ? 'Edit Message' : 'New Message'">Message Form</title>
     <link rel="stylesheet" th:href="@{/css/theme.css}">
 </head>
 <body>
-<div class="site-header">
-    <div class="container nav">
-        <a th:href="@{/messages/manage}">Back to list</a>
-    </div>
-</div>
+<header class="site-header">
+    <nav class="nav-bar">
+        <div class="brand">App208</div>
+        <div class="nav-links">
+            <a th:href="@{/messages/manage}">Back to list</a>
+            <a th:href="@{/logout}">Logout</a>
+        </div>
+    </nav>
+</header>
 
-<div class="container">
-    <div class="card">
-        <h1 th:text="${messageId} != null ? 'Edit Message' : 'New Message'"></h1>
+<main>
+    <section style="max-width: 640px; margin: 1.5rem auto;">
+        <article class="card">
+            <h1 th:text="${messageId} != null ? 'Edit Message' : 'New Message'"></h1>
+            <p class="muted" th:text="${messageId} != null ? 'Update the existing message.' : 'Create a new message.'"></p>
 
-        <form th:action="${messageId} != null ? @{'/messages/manage/edit/' + ${messageId}} : @{/messages/manage/new}"
-              th:object="${messageDto}" method="post">
-            <label>Name:</label>
-            <input type="text" th:field="*{name}"/>
-            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></div>
+            <form th:action="${messageId} != null ? @{'/messages/manage/edit/' + ${messageId}} : @{/messages/manage/new}"
+                  th:object="${messageDto}" method="post">
+                <label for="name">Name</label>
+                <input id="name" type="text" th:field="*{name}"/>
+                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></div>
 
-            <label>Email:</label>
-            <input type="email" th:field="*{email}"/>
-            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></div>
+                <label for="email">Email</label>
+                <input id="email" type="email" th:field="*{email}"/>
+                <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></div>
 
-            <label>Subject:</label>
-            <input type="text" th:field="*{subject}"/>
-            <div th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}" class="error"></div>
+                <label for="subject">Subject</label>
+                <input id="subject" type="text" th:field="*{subject}"/>
+                <div th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}" class="error"></div>
 
-            <label>Message:</label>
-            <textarea th:field="*{content}" rows="5"></textarea>
-            <div th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="error"></div>
+                <label for="content">Message</label>
+                <textarea id="content" th:field="*{content}" rows="5"></textarea>
+                <div th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="error"></div>
 
-            <button class="btn" type="submit">Save</button>
-        </form>
-    </div>
-</div>
-
+                <button type="submit">Save</button>
+            </form>
+        </article>
+    </section>
+</main>
 </body>
 </html>
