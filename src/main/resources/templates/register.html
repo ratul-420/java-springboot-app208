@@ -1,35 +1,40 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Register</title>
     <link rel="stylesheet" th:href="@{/css/theme.css}">
 </head>
 <body>
-<div class="site-header">
-    <div class="container nav">
-        <a th:href="@{/home}">Home</a>
-        <a th:href="@{/login}">Login</a>
-        <a th:href="@{/contact}">Contact</a>
-    </div>
-</div>
+<header class="site-header">
+    <nav class="nav-bar">
+        <div class="brand">App208</div>
+        <div class="nav-links">
+            <a th:href="@{/home}">Home</a>
+            <a th:href="@{/login}">Login</a>
+            <a th:href="@{/contact}">Contact</a>
+        </div>
+    </nav>
+</header>
 
-<div class="container">
-    <div class="card">
-        <h1>Register</h1>
-        <form th:action="@{/register}" th:object="${user}" method="post">
-            <label>Username</label>
-            <input type="text" th:field="*{username}" placeholder="Username" required />
+<main>
+    <section style="max-width: 520px; margin: 1.5rem auto;">
+        <article class="card">
+            <h1>Register</h1>
+            <p class="muted">Create your account to access messages, CRUD, and protected areas.</p>
+            <form th:action="@{/register}" th:object="${user}" method="post">
+                <label for="username">Username</label>
+                <input id="username" type="text" th:field="*{username}" placeholder="Username" required />
 
-            <label>Email</label>
-            <input type="email" th:field="*{email}" placeholder="Email" required />
+                <label for="email">Email</label>
+                <input id="email" type="email" th:field="*{email}" placeholder="Email" required />
 
-            <label>Password</label>
-            <input type="password" th:field="*{password}" placeholder="Password" required />
+                <label for="password">Password</label>
+                <input id="password" type="password" th:field="*{password}" placeholder="Password" required />
 
-            <button class="btn" type="submit">Register</button>
-        </form>
-    </div>
-</div>
-
+                <button type="submit">Register</button>
+            </form>
+        </article>
+    </section>
+</main>
 </body>
 </html>
